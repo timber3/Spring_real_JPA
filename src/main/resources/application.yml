@@ -1,18 +1,16 @@
 spring:
   datasource:
-    url: jdbc:h2:tcp://localhost/E:/H2_db/JPAshop/test;MVCC=TRUE
+    url: jdbc:h2:tcp://localhost/E:/H2_db/JPAshop/jpashop
     username: sa
     password:
     driver-class-name: org.h2.Driver
 
   jpa:
     hibernate:
-      ddl-auto: create # 실행시 갖고있는 테이블 지우고 다시 생성함
+      ddl-auto: create
     properties:
       hibernate:
-#        show_sql: true  // system.out 으로 로그를 찍기 때문에 안쓴다.
         format_sql: true
 
-logging:
-  level:
-    org.hibernate.SQL: debug # logger를 통해서 로그를 찍는다.
+logging.level:
+  org.hibernate.SQL: debug

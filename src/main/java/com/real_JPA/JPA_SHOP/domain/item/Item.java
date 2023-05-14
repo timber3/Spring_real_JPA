@@ -1,9 +1,12 @@
 package com.real_JPA.JPA_SHOP.domain.item;
 
+import com.real_JPA.JPA_SHOP.domain.Category;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter @Setter
@@ -20,5 +23,8 @@ public abstract class Item {
     private int price;
 
     private int stockQuantity;
+
+    @ManyToMany(mappedBy = "items")
+    private List<Category> categories = new ArrayList<>();
 
 }

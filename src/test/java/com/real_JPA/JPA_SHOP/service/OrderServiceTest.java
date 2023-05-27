@@ -75,11 +75,17 @@ public class OrderServiceTest {
 
         int orderCount = 2;
 
+        Long orderId = orderService.order(member.getId(), book.getId(), orderCount);
         // when
-
-        orderService.order(member.getId(), book.getId(), orderCount);
+        orderService.cancelOrder(orderId);
 
         // then
+        // 주문이 취소가 됐을때 재고가 정상적으로 복구 되었는가
+        Order getOrder = orderRepository.findOne(orderId);
+
+        assertEquals("주문 취소시 상태는 CANCEL이다.", OrderStatus.CANCEL, getOrder.getStatus());
+        assertEquals("주문 취소시 재고가 다시 증가해야 한다.", 10, book.getStockQuantity());
+
     }
 
 

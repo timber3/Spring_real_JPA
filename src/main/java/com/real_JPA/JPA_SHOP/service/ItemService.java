@@ -1,5 +1,6 @@
 package com.real_JPA.JPA_SHOP.service;
 
+import com.real_JPA.JPA_SHOP.domain.item.Book;
 import com.real_JPA.JPA_SHOP.domain.item.Item;
 import com.real_JPA.JPA_SHOP.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -26,4 +27,16 @@ public class ItemService {
     public List<Item> findAll() {
         return itemRepository.findAll();
     }
+
+    @Transactional
+    public void updateItem(Long itemId, Book param) {
+
+        Item item = itemRepository.findOne(itemId);
+
+        item.setName(param.getName());
+        item.setPrice(param.getPrice());
+        item.setStockQuantity(param.getStockQuantity());
+    }
+
+
 }
